@@ -174,6 +174,7 @@ export function ProductList({
 									<Checkbox
 										checked={isChecked}
 										onCheckedChange={() => toggleSelect(product._id)}
+										disabled={product.stock === 0}
 									/>
 								</TableCell>
 								<TableCell className="font-medium">{product.name}</TableCell>
