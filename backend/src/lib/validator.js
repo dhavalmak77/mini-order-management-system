@@ -28,4 +28,17 @@ const validateCreateProduct = (data) => {
 	return schema.validate(data);
 };
 
-export { validateRegister, validateLogin, validateCreateProduct };
+const validateCreateOrder = (data) => {
+	const schema = Joi.object({
+		products: Joi.array().items(
+			Joi.object({
+				product: Joi.string().required(),
+				quantity: Joi.number().min(1).integer().required()
+			})
+		).required()
+	});
+
+	return schema.validate(data);
+};
+
+export { validateRegister, validateLogin, validateCreateProduct, validateCreateOrder };

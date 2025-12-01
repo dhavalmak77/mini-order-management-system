@@ -1,5 +1,5 @@
 import asyncHandler from "express-async-handler";
-import { validateCreateProduct } from "../lib/validator.js";
+import { validateCreateOrder, validateCreateProduct } from "../lib/validator.js";
 import { Product } from "../models/Product.model.js";
 import { Order } from "../models/Order.model.js";
 
@@ -67,6 +67,13 @@ const getOrders = asyncHandler(async (req, res) => {
  * Create order
  */
 const createOrder = asyncHandler(async (req, res) => {
+	const { error } = validateCreateOrder(req.body);
+	if (error) {
+		return res.status(400).json({
+			message: error.details.map(({ message }) => message).join(', ')
+		});
+	}
+
 	const { products } = req.body;
 	if (!products || products.length === 0) {
 		return res.status(400).json({ message: "Products are required" });

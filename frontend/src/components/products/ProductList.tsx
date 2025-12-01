@@ -110,6 +110,7 @@ export function ProductList({
 				}
 			);
 
+			console.log(response.data)
 			toast("Order placed successfully!");
 			setSelectedProducts([]);
 			setOrderQuantities({});
@@ -143,9 +144,10 @@ export function ProductList({
 					<span className="mr-4">none</span>
 				) : (
 					<p className="flex gap-4">
-						{selectedProducts.map((product) => <span className="">{data.find((p) => p._id === product)?.name}</span>)}
+						{selectedProducts.map((product, index) => <span className="" key={index}>{data.find((p) => p._id === product)?.name}</span>)}
 					</p>
 				)}
+
 				<Button size="sm" variant="outline" onClick={placeOrder}>
 					Place Order
 				</Button>
