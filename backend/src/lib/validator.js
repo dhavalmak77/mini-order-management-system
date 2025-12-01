@@ -21,8 +21,8 @@ const validateLogin = (data) => {
 const validateCreateProduct = (data) => {
 	const schema = Joi.object({
 		name: Joi.string().trim().required(),
-		price: Joi.number().required(),
-		stock: Joi.number().integer().required()
+		price: Joi.number().min(1).required(),
+		stock: Joi.number().min(1).integer().required()
 	});
 
 	return schema.validate(data);
