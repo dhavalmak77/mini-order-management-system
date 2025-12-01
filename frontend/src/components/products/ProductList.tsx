@@ -47,6 +47,8 @@ export function ProductList({
 	const pages = Array.from({ length: totalPage }, (_, i) => i + 1);
 	const [selectedProducts, setSelectedProducts] = useState<string[]>([]);
 	const [orderQuantities, setOrderQuantities] = useState<Record<string, number>>({});
+	const [error, setError] = useState<string>('');
+	const [success, setSuccess] = useState<string>('');
 
 	const toggleSelect = (productId: string) => {
 		setSelectedProducts((prev) => {
@@ -85,7 +87,9 @@ export function ProductList({
 	};
 
 	const placeOrder = async () => {
+		setError("");
 		if (selectedProducts.length === 0) {
+			setError("No products selected.");
 			return toast("No products selected.");
 		}
 
@@ -97,6 +101,7 @@ export function ProductList({
 		// Validation
 		for (const item of productsToOrder) {
 			if (item.quantity <= 0) {
+				setError("Quantity cannot be empty or zero for selected products, please set quantity in Order Quantity field");
 				return toast("Quantity cannot be empty or zero for selected products.");
 			}
 		}
@@ -111,11 +116,13 @@ export function ProductList({
 			);
 
 			console.log(response.data)
+			setSuccess(response.data.message);
 			toast("Order placed successfully!");
 			setSelectedProducts([]);
 			setOrderQuantities({});
 		} catch (error: AxiosError | any) {
 			const msg = error.response?.data?.message || error.message;
+			setError(msg);
 			toast(msg);
 		}
 	};
@@ -151,6 +158,9 @@ export function ProductList({
 				<Button size="sm" variant="outline" onClick={placeOrder}>
 					Place Order
 				</Button>
+
+				{error && <p className="text-red-500 font-medium">{error}</p>}
+				{success && <p className="text-green-500 font-medium">{success}</p>}
 			</div>
 
 			<Table>
