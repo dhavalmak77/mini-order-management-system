@@ -1,9 +1,8 @@
 import { Link } from "react-router-dom";
 import { Button } from "../ui/button";
+import { token } from "@/utils/utills";
 
 export const Header = () => {
-	const token = localStorage.getItem('token') as string;
-
 	const logout = () => {
 		localStorage.removeItem('token');
 		window.location.href = '/login';

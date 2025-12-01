@@ -7,9 +7,9 @@ import { MainWrapper } from './components/layout/MainWrapper';
 import { Register } from './pages/Register';
 import { Products } from './pages/Products';
 import { Orders } from './pages/Orders';
+import { token } from './utils/utills';
 
 const Protected = ({ children }: React.PropsWithChildren) => {
-	const token = localStorage.getItem('token');
 	if (!token) {
 		return <Navigate to="/login" replace />
 	}

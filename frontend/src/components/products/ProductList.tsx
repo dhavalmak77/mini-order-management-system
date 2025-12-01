@@ -22,6 +22,7 @@ import { Button } from "../ui/button";
 import { useState } from "react";
 import axios, { AxiosError } from "axios";
 import { toast } from "sonner";
+import { API_URL, token } from "@/utils/utills";
 
 export interface Product {
 	_id: string,
@@ -29,8 +30,6 @@ export interface Product {
 	price: number,
 	stock: number
 }
-
-const API_URL = import.meta.env.VITE_API_URL;
 
 export function ProductList({
 	data,
@@ -119,8 +118,6 @@ export function ProductList({
 			toast(msg);
 		}
 	};
-
-	const token = localStorage.getItem('token');
 
 	const deleteProduct = async (productId: String) => {
 		try {

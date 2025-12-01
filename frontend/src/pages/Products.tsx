@@ -1,17 +1,14 @@
 import { CreateProduct } from "@/components/products/CreateProduct";
 import { ProductList, type Product } from "@/components/products/ProductList";
+import { API_URL, token } from "@/utils/utills";
 
 import axios, { AxiosError } from "axios";
 import { useEffect, useState } from "react";
-
-const API_URL = import.meta.env.VITE_API_URL;
 
 export const Products = () => {
 	const [products, setProducts] = useState<Array<Product>>([]);
 	const [currentPage, setCurrentPage] = useState(1);
 	const [totalPage, setTotalPage] = useState(1);
-
-	const token = localStorage.getItem('token');
 
 	const fetchProducts = async (page = 1) => {
 		try {

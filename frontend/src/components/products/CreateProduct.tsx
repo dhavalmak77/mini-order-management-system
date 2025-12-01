@@ -4,16 +4,13 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { toast } from 'sonner';
 import axios, { AxiosError } from 'axios';
-
-const API_URL = import.meta.env.VITE_API_URL;
+import { API_URL, token } from '@/utils/utills';
 
 export const CreateProduct = ({ fetchProducts }: { fetchProducts: () => void }) => {
 	const [name, setName] = useState<string>('');
 	const [price, setPrice] = useState<string>('');
 	const [stock, setStock] = useState<string>('');
 	const [error, setError] = useState<string>('');
-
-	const token = localStorage.getItem('token');
 
 	const onSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();

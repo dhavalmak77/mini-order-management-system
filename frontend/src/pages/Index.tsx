@@ -1,15 +1,12 @@
+import { API_URL, token } from "@/utils/utills";
 import axios, { AxiosError } from "axios";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
-
-const API_URL = import.meta.env.VITE_API_URL;
 
 export const Index = () => {
 	const [user, setUser] = useState<any>({});
 
 	useEffect(() => {
-		const token = localStorage.getItem('token');
-
 		(async () => {
 			try {
 				const response = await axios.get(`${API_URL}/user/`, {

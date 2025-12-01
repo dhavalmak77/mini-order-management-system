@@ -1,11 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { API_URL } from "@/utils/utills";
 import axios, { AxiosError } from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
-const API_URL = import.meta.env.VITE_API_URL;
 
 export const Register = () => {
 	const [email, setEmail] = useState<string>('');

@@ -1,8 +1,7 @@
 import { OrdersList, type Order } from '@/components/orders/OrdersList';
+import { API_URL, token } from '@/utils/utills';
 import axios, { AxiosError } from 'axios';
 import { useEffect, useState } from 'react';
-
-const API_URL = import.meta.env.VITE_API_URL;
 
 // export interface Order {
 // 	_id: string,
@@ -12,8 +11,6 @@ const API_URL = import.meta.env.VITE_API_URL;
 
 export const Orders = () => {
 	const [orders, setOrders] = useState<Array<Order>>([]);
-
-	const token = localStorage.getItem('token');
 
 	const fetchOrders = async () => {
 		try {
