@@ -1,0 +1,68 @@
+@url = http://localhost:5000
+@token = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MmM5MTlmMDliNTYyOGRhNzI3NGViMyIsImlhdCI6MTc2NDUzMTI4MywiZXhwIjoxNzY0NjE3NjgzfQ.mNOhYPj0dUThffHwPsUJ4zRAvkZbJjukjJtWxyqdtfU
+
+### Index Endpoint
+GET {{url}}/
+
+
+###################################################### User Endpoints ######################################################
+### Register User
+POST {{url}}/user/register
+Content-Type: application/json
+{
+	"email": "dhaval@mail.com",
+	"password": "dhavaladmin"
+}
+
+### Login User
+POST {{url}}/user/login
+
+### Get User
+GET {{url}}/user
+Authorization: {{token}}
+
+
+###################################################### Products Endpoints ######################################################
+### Create Product
+POST {{url}}/products
+Content-Type: application/json
+Authorization: {{token}}
+{
+	"name": "product 1",
+	"price": 3,
+	"stock": 30
+}
+
+### Get Products
+GET {{url}}/products
+Content-Type: application/json
+Authorization: {{token}}
+
+### Delete Products
+GET {{url}}/products/692cbb93082a96ab07d58e0c
+Content-Type: application/json
+Authorization: {{token}}
+
+
+###################################################### Orders Endpoints ######################################################
+### Get Orders
+GET {{url}}/orders
+Content-Type: application/json
+Authorization: {{token}}
+
+### Create Order
+POST {{url}}/orders
+Content-Type: application/json
+Authorization: {{token}}
+{
+	"products": [
+		{
+			"product": "692cbb22082a96ab07d58e03",
+			"quantity": 3
+		},
+		{
+			"product": "692cba7a546ac81e015cd023",
+			"quantity": 2
+		}
+	]
+}
