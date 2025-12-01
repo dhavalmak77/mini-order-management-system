@@ -14,6 +14,12 @@ export const CreateProduct = ({ fetchProducts }: { fetchProducts: () => void }) 
 
 	const onSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
+
+		if (!name || !price || !stock) {
+			setError('All fields are required');
+			return;
+		}
+
 		try {
 			const response = await axios.post(
 				`${API_URL}/products/`,

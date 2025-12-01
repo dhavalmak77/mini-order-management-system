@@ -19,6 +19,12 @@ export const Register = () => {
 
 	const onSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
+
+		if (!email || !password) {
+			setError('Email and password are required');
+			return;
+		}
+
 		try {
 			const response = await axios.post(`${API_URL}/user/register`, {
 				email,
